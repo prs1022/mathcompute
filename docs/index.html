@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>数值分析</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Description">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <!--
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-defaults.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple-dark.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css">
+  -->
+  <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
+  <!--<link rel="stylesheet" href="//unpkg.com/docsify/themes/dark.css">-->
+  <!--<link rel="stylesheet" href="//unpkg.com/docsify/themes/dolphin.css">-->
+  
+  <!-- CDN files for docsify-katex -->
+  <link href="https://cdn.bootcss.com/KaTeX/0.10.0/katex.min.css" rel="stylesheet">
+  <script src="https://cdn.bootcss.com/KaTeX/0.10.0/katex.min.js"></script>
+  
+  <!--git talk评论插件-->
+  <link rel="stylesheet" href="//unpkg.com/gitalk/dist/gitalk.css">
+	<script src="//unpkg.com/docsify/lib/plugins/gitalk.min.js"></script>
+	<script src="//unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script>
+	  const gitalk = new Gitalk({
+		clientID: '9a47c88d3b8845187eb2',
+		clientSecret: 'e1bafb57a55d02227cbea3129e5a63e4db30b2ae',
+		repo: 'prs1022',
+		owner: 'prs1022',
+		admin: ['prs1022'],
+		// facebook-like distraction free mode
+		distractionFreeMode: false
+	  })
+  </script>
+</head>
+<body>
+  <div id="app">
+  </div>
+  <script>
+    window.$docsify = {
+      name: '数值分析',
+      repo: '#',
+	  coverpage:'cover.md',
+	  markdown: {
+        renderer: {
+          code: function(code, lang) {
+            if (lang === "dot") {
+              return (
+                '<div class="viz">'+ Viz(code, "SVG")+'</div>'
+              );
+            }
+            if (lang === "tex") {
+              return (
+                '<span class="tex">'+ katex.renderToString(code, {
+                    throwOnError: false
+                })+'</span>'
+              );
+            }
+            return this.origin.code.apply(this, arguments);
+          }
+        }
+      }
+    }
+  </script>
+  <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+  <!--点击图片放大插件-->
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
+  <!--赋值代码插件-->
+  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code"></script>
+
+</body>
+</html>
